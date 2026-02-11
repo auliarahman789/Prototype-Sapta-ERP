@@ -1,4 +1,4 @@
-// RightSidebar.tsx - Updated with manufacturing ERP mock data
+// RightSidebar.tsx - Saptaloka Digital Brand Theme
 import React, { useState } from "react";
 import { ChevronLeft, ChevronRight, Calendar, FileText } from "lucide-react";
 
@@ -110,11 +110,11 @@ const RightSidebar: React.FC<RightSidebarProps> = ({ taskSummary, tasks }) => {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "pending":
-        return "bg-[#fff3e0] text-[#f57c00]";
+        return "bg-amber-50 text-amber-700 border border-amber-200";
       case "approved":
-        return "bg-[#e8f5e9] text-[#2e7d32]";
+        return "bg-emerald-50 text-emerald-700 border border-emerald-200";
       case "rejected":
-        return "bg-[#ffebee] text-[#c62828]";
+        return "bg-rose-50 text-rose-700 border border-rose-200";
       default:
         return "";
     }
@@ -135,102 +135,123 @@ const RightSidebar: React.FC<RightSidebarProps> = ({ taskSummary, tasks }) => {
 
   return (
     <>
+      {/* Toggle Button with Saptaloka brand colors */}
       <button
-        className={`fixed top-1/2 -translate-y-1/2 w-[30px] h-[50px] bg-white border border-blue-400 border-r-0 rounded-l-lg cursor-pointer flex items-center justify-center transition-[right] duration-300 shadow-[-2px_0_8px_rgba(0,0,0,0.1)] z-[101] hover:bg-[#f5f5f5] ${
+        className={`fixed top-1/2 -translate-y-1/2 w-[36px] h-[60px] bg-white border-2 border-[#0EA5E9] border-r-0 rounded-l-xl cursor-pointer flex items-center justify-center transition-all duration-300 shadow-[-4px_0_12px_rgba(14,165,233,0.15)] z-[101] hover:bg-gradient-to-r hover:from-[#0EA5E9] hover:to-[#1E88E5] hover:shadow-[-4px_0_20px_rgba(14,165,233,0.3)] group ${
           isCollapsed ? "right-0" : "right-[280px] sm:right-[320px]"
         }`}
         onClick={toggleSidebar}
       >
         {isCollapsed ? (
-          <ChevronLeft size={20} color="blue" />
+          <ChevronLeft
+            size={22}
+            className="text-[#0EA5E9] group-hover:text-white transition-colors duration-300"
+            strokeWidth={2.5}
+          />
         ) : (
-          <ChevronRight size={20} color="blue" />
+          <ChevronRight
+            size={22}
+            className="text-[#0EA5E9] group-hover:text-white transition-colors duration-300"
+            strokeWidth={2.5}
+          />
         )}
       </button>
 
+      {/* Sidebar Panel */}
       <div
-        className={`fixed right-0 top-0 h-screen w-[280px] sm:w-[320px] bg-white shadow-[-2px_0_8px_rgba(0,0,0,0.1)] transition-transform duration-300 z-[100] overflow-y-auto ${
+        className={`fixed right-0 top-0 h-screen w-[280px] sm:w-[320px] bg-white shadow-[-4px_0_24px_rgba(14,165,233,0.08)] transition-transform duration-300 z-[100] overflow-y-auto border-l border-slate-200 ${
           isCollapsed ? "translate-x-full" : "translate-x-0"
         }`}
       >
-        <div className="p-[20px] sm:p-[24px_20px]">
-          <div className="flex items-center justify-between mb-4 sm:mb-6 pb-3 sm:pb-4 border-b-2 border-[#e0e0e0]">
-            <h2 className="text-lg sm:text-xl font-semibold text-[#1a1a1a] m-0">
-              My Task
+        <div className="p-5 sm:p-6">
+          {/* Header with brand gradient */}
+          <div className="flex items-center justify-between mb-6 pb-4 border-b-2 border-gradient-to-r from-[#0EA5E9] to-[#1E88E5]">
+            <h2 className="text-xl font-bold bg-gradient-to-r from-[#0EA5E9] to-[#1E88E5] bg-clip-text text-transparent m-0">
+              My Tasks
             </h2>
-            <span className="bg-[#2196f3] text-white py-1 px-3 rounded-2xl text-sm font-semibold">
+            <span className="bg-gradient-to-r from-[#0EA5E9] to-[#1E88E5] text-white py-1.5 px-4 rounded-full text-sm font-bold shadow-md">
               {summary.totalTasks}
             </span>
           </div>
 
-          {/* Task Summary Stats */}
-          <div className="grid grid-cols-3 gap-2 mb-4">
-            <div className="bg-[#fff3e0] rounded-lg p-2 text-center">
-              <div className="text-[#f57c00] text-xl font-bold">
+          {/* Task Summary Stats with brand colors */}
+          <div className="grid grid-cols-3 gap-3 mb-5">
+            <div className="bg-gradient-to-br from-amber-50 to-amber-100 rounded-xl p-1 text-center border border-amber-200 shadow-sm hover:shadow-md transition-shadow duration-200">
+              <div className="text-amber-700 text-2xl font-bold mb-1">
                 {summary.pending}
               </div>
-              <div className="text-[#f57c00] text-[10px] font-medium">
+              <div className="text-amber-600 text-xs font-semibold uppercase tracking-wide">
                 Pending
               </div>
             </div>
-            <div className="bg-[#e8f5e9] rounded-lg p-2 text-center">
-              <div className="text-[#2e7d32] text-xl font-bold">
+            <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-xl p-1 text-center border border-emerald-200 shadow-sm hover:shadow-md transition-shadow duration-200">
+              <div className="text-emerald-700 text-2xl font-bold mb-1">
                 {summary.approved}
               </div>
-              <div className="text-[#2e7d32] text-[10px] font-medium">
+              <div className="text-emerald-600 text-xs font-semibold uppercase tracking-wide">
                 Approved
               </div>
             </div>
-            <div className="bg-[#ffebee] rounded-lg p-2 text-center">
-              <div className="text-[#c62828] text-xl font-bold">
+            <div className="bg-gradient-to-br from-rose-50 to-rose-100 rounded-xl p-1 text-center border border-rose-200 shadow-sm hover:shadow-md transition-shadow duration-200">
+              <div className="text-rose-700 text-2xl font-bold mb-1">
                 {summary.rejected}
               </div>
-              <div className="text-[#c62828] text-[10px] font-medium">
+              <div className="text-rose-600 text-xs font-semibold uppercase tracking-wide">
                 Rejected
               </div>
             </div>
           </div>
 
+          {/* Task List */}
           {taskList.length > 0 && (
-            <div className="mt-3 pt-3">
-              <div className="flex flex-col gap-3 overflow-y-auto pr-1 mb-6 sm:mb-8 max-h-[calc(100vh-280px)] scrollbar-thin scrollbar-w-1 scrollbar-track-[#f1f1f1] scrollbar-thumb-[#888] hover:scrollbar-thumb-[#555] scrollbar-track-rounded-[2px] scrollbar-thumb-rounded-[2px]">
+            <div className="mt-4 pt-4 border-t border-slate-100">
+              <div className="flex flex-col gap-3 overflow-y-auto pr-1 max-h-[calc(100vh-320px)] scrollbar-thin scrollbar-w-2 scrollbar-track-slate-100 scrollbar-thumb-[#0EA5E9] hover:scrollbar-thumb-[#1E88E5] scrollbar-track-rounded-full scrollbar-thumb-rounded-full">
                 {taskList.map((task) => (
                   <div
                     key={task.id}
-                    className="bg-[#f8f9fa] border border-[#e0e0e0] rounded-lg p-3 transition-all duration-200 cursor-pointer hover:bg-white hover:shadow-[0_2px_8px_rgba(0,0,0,0.1)] hover:-translate-y-[2px]"
+                    className="bg-gradient-to-br from-slate-50 to-white border border-slate-200 rounded-xl p-4 transition-all duration-300 cursor-pointer hover:shadow-lg hover:border-[#0EA5E9] hover:-translate-y-1 hover:bg-white group"
                   >
-                    <div className="flex justify-end mb-2">
+                    {/* Status Badge */}
+                    <div className="flex justify-end mb-3">
                       <span
-                        className={`py-1 px-[10px] rounded-xl text-[11px] font-semibold uppercase tracking-[0.5px] ${getStatusColor(
+                        className={`py-1.5 px-3 rounded-full text-[11px] font-bold uppercase tracking-wider shadow-sm ${getStatusColor(
                           task.status,
                         )}`}
                       >
                         {getStatusLabel(task.status)}
                       </span>
                     </div>
-                    <div className="flex flex-col gap-[6px]">
-                      <h4 className="text-sm font-semibold text-[#1a1a1a] m-0 leading-[1.4] overflow-hidden text-ellipsis line-clamp-2">
+
+                    {/* Task Content */}
+                    <div className="flex flex-col gap-2">
+                      <h4 className="text-sm font-bold text-slate-800 m-0 leading-relaxed overflow-hidden text-ellipsis line-clamp-2 group-hover:text-[#0EA5E9] transition-colors duration-200">
                         {task.title}
                       </h4>
                       {task.subtitle && (
-                        <p className="text-xs text-[#666] m-0 leading-[1.3] overflow-hidden text-ellipsis line-clamp-2">
+                        <p className="text-xs text-slate-600 m-0 leading-relaxed overflow-hidden text-ellipsis line-clamp-2">
                           {task.subtitle}
                         </p>
                       )}
-                      <div className="flex flex-col gap-1 mt-1">
-                        <div className="flex items-center gap-[6px] text-[11px] text-[#999]">
+
+                      {/* Metadata */}
+                      <div className="flex flex-col gap-2 mt-2 pt-2 border-t border-slate-100">
+                        <div className="flex items-center gap-2 text-xs text-slate-500">
                           <FileText
                             size={14}
-                            className="text-[#999] flex-shrink-0"
+                            className="text-[#0EA5E9] flex-shrink-0"
+                            strokeWidth={2}
                           />
-                          <span className="truncate">{task.quotationNo}</span>
+                          <span className="truncate font-medium">
+                            {task.quotationNo}
+                          </span>
                         </div>
-                        <div className="flex items-center gap-[6px] text-[11px] text-[#999]">
+                        <div className="flex items-center gap-2 text-xs text-slate-500">
                           <Calendar
                             size={14}
-                            className="text-[#999] flex-shrink-0"
+                            className="text-[#0EA5E9] flex-shrink-0"
+                            strokeWidth={2}
                           />
-                          <span>{task.date}</span>
+                          <span className="font-medium">{task.date}</span>
                         </div>
                       </div>
                     </div>

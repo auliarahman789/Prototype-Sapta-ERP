@@ -1,4 +1,4 @@
-// Sidebar.tsx - Fixed with suitable icons and dynamic vertical line
+// Sidebar.tsx - Saptaloka Digital Brand Theme
 import React, { useState, useEffect } from "react";
 import {
   ChevronLeft,
@@ -145,74 +145,64 @@ const Sidebar: React.FC<SidebarProps> = ({
     }
   };
 
-  // Calculate vertical line height dynamically
-  const calculateLineHeight = (subItemsLength: number) => {
-    if (subItemsLength === 0) return "0px";
-    // Base calculation: first item at 13px, each subsequent item adds 47px
-    const baseOffset = 13;
-    const itemHeight = 47;
-    const totalHeight = baseOffset + (subItemsLength - 1) * itemHeight;
-    return `${totalHeight}px`;
-  };
-
   return (
     <div
       className={`${
         isCollapsed ? "w-[70px]" : "w-[280px]"
-      } h-screen bg-gradient-to-b from-white to-[#f8f9fa] border-r border-[#e5e7eb] flex flex-col transition-all duration-300 ease-in-out fixed left-0 top-0 overflow-hidden z-[100] lg:z-auto
+      } h-screen bg-white border-r-2 border-slate-200 flex flex-col transition-all duration-300 ease-in-out fixed left-0 top-0 overflow-hidden z-[100] lg:z-auto
       ${
         isMobileMenuOpen
           ? "translate-x-0"
           : "-translate-x-full lg:translate-x-0"
       }
-      shadow-2xl lg:shadow-none`}
+      shadow-[0_0_32px_rgba(14,165,233,0.12)] lg:shadow-none`}
     >
-      {/* Logo Section */}
+      {/* Logo Section with brand styling */}
       <div
         className={`${
-          isCollapsed ? "min-h-[30px] p-[15px]" : "min-h-[30px] p-[16px_20px]"
-        } flex-shrink-0 flex items-center justify-center transition-all duration-300`}
+          isCollapsed ? "min-h-[80px] p-4" : "min-h-[100px] p-6"
+        } flex-shrink-0 flex items-center justify-center transition-all duration-300 border-b-2 border-slate-100 bg-gradient-to-br from-white to-slate-50`}
       >
         {!isCollapsed ? (
-          <div className="flex items-center justify-center w-full">
+          <div className="flex items-center justify-center w-full  ">
             <img
               src={MainIcon}
-              alt="Logo"
-              className="w-full h-auto max-h-[100px] block transition-all duration-300"
+              alt="Saptaloka Digital"
+              className="w-full h-auto max-h-[70px] block transition-all duration-300 drop-shadow-sm rounded"
             />
           </div>
         ) : (
           <div className="flex items-center justify-center h-full w-full">
             <img
               src={MainIcon}
-              alt="Logo"
-              className="object-contain transition-all duration-300"
+              alt="Saptaloka Digital"
+              className="h-[40px] w-auto object-contain transition-all duration-300 drop-shadow-sm rounded"
             />
           </div>
         )}
       </div>
 
-      {/* Navigation Menu */}
-      <nav className="flex-1 overflow-y-auto overflow-x-hidden p-[8px_0] scrollbar-thin scrollbar-thumb-[#cbd5e1] scrollbar-track-transparent hover:scrollbar-thumb-[#94a3b8] scrollbar-thumb-rounded-[3px]">
+      {/* Navigation Menu with Saptaloka brand colors */}
+      <nav className="flex-1 overflow-y-auto overflow-x-hidden p-3 scrollbar-thin scrollbar-thumb-[#0EA5E9] scrollbar-track-transparent hover:scrollbar-thumb-[#1E88E5] scrollbar-thumb-rounded-full">
         {menuItems.map((item) => {
           const active = isActive(item);
           const isExpanded = expandedItem === item.id;
           const IconComponent = item.icon;
 
           return (
-            <div key={item.id} className="mb-[2px]">
+            <div key={item.id} className="mb-1">
               {item.subItems ? (
                 <button
                   className={`${
                     isCollapsed
-                      ? "w-[calc(100%-16px)] mx-2"
-                      : "w-[calc(100%-24px)] mx-3"
+                      ? "w-[calc(100%-8px)] mx-1"
+                      : "w-[calc(100%-16px)] mx-2"
                   } flex items-center ${
-                    isCollapsed ? "justify-center p-3" : "p-[11px_16px]"
-                  } border-none cursor-pointer text-sm font-medium transition-all duration-200 relative gap-3 text-left rounded-lg group ${
+                    isCollapsed ? "justify-center p-3" : "p-3.5"
+                  } border-none cursor-pointer text-sm font-bold transition-all duration-200 relative gap-3 text-left rounded-xl group ${
                     active
-                      ? "bg-gradient-to-br from-[#2563eb] to-[#3b82f6] text-white shadow-[0_4px_12px_rgba(37,99,235,0.3)]"
-                      : "bg-transparent text-[#475569] hover:bg-[#f1f5f9] hover:text-[#1e40af]"
+                      ? "bg-gradient-to-r from-[#0EA5E9] to-[#1E88E5] text-white shadow-[0_4px_16px_rgba(14,165,233,0.35)]"
+                      : "bg-transparent text-slate-700 hover:bg-gradient-to-br hover:from-sky-50 hover:to-blue-50 hover:text-[#0EA5E9]"
                   }`}
                   onClick={() => toggleExpand(item.id)}
                 >
@@ -222,11 +212,12 @@ const Sidebar: React.FC<SidebarProps> = ({
                     } flex items-center justify-center w-5 h-5`}
                   >
                     <IconComponent
-                      size={22}
+                      size={20}
+                      strokeWidth={2.5}
                       className={`transition-all duration-200 ${
                         active
-                          ? "text-white"
-                          : "text-[#475569] group-hover:text-[#1e40af]"
+                          ? "text-white drop-shadow-sm"
+                          : "text-[#0EA5E9] group-hover:text-[#1E88E5] group-hover:scale-110"
                       }`}
                     />
                   </span>
@@ -236,7 +227,8 @@ const Sidebar: React.FC<SidebarProps> = ({
                         {item.label}
                       </span>
                       <ChevronRight
-                        size={16}
+                        size={18}
+                        strokeWidth={2.5}
                         className={`flex-shrink-0 transition-transform duration-200 ml-auto ${
                           isExpanded ? "rotate-90" : ""
                         }`}
@@ -250,14 +242,14 @@ const Sidebar: React.FC<SidebarProps> = ({
                   onClick={handleLinkClick}
                   className={`${
                     isCollapsed
-                      ? "w-[calc(100%-16px)] mx-2"
-                      : "w-[calc(100%-24px)] mx-3"
+                      ? "w-[calc(100%-8px)] mx-1"
+                      : "w-[calc(100%-16px)] mx-2"
                   } flex items-center ${
-                    isCollapsed ? "justify-center p-3" : "p-[11px_16px]"
-                  } border-none cursor-pointer text-sm font-medium transition-all duration-200 relative gap-3 text-left rounded-lg group ${
+                    isCollapsed ? "justify-center p-3" : "p-3.5"
+                  } border-none cursor-pointer text-sm font-bold transition-all duration-200 relative gap-3 text-left rounded-xl group ${
                     active
-                      ? "bg-gradient-to-br from-[#2563eb] to-[#3b82f6] text-white shadow-[0_4px_12px_rgba(37,99,235,0.3)]"
-                      : "bg-transparent text-[#475569] hover:bg-[#f1f5f9] hover:text-[#1e40af]"
+                      ? "bg-gradient-to-r from-[#0EA5E9] to-[#1E88E5] text-white shadow-[0_4px_16px_rgba(14,165,233,0.35)]"
+                      : "bg-transparent text-slate-700 hover:bg-gradient-to-br hover:from-sky-50 hover:to-blue-50 hover:text-[#0EA5E9]"
                   }`}
                 >
                   <span
@@ -266,11 +258,12 @@ const Sidebar: React.FC<SidebarProps> = ({
                     } flex items-center justify-center w-5 h-5`}
                   >
                     <IconComponent
-                      size={22}
+                      size={20}
+                      strokeWidth={2.5}
                       className={`transition-all duration-200 ${
                         active
-                          ? "text-white"
-                          : "text-[#475569] group-hover:text-[#1e40af]"
+                          ? "text-white drop-shadow-sm"
+                          : "text-[#0EA5E9] group-hover:text-[#1E88E5] group-hover:scale-110"
                       }`}
                     />
                   </span>
@@ -282,28 +275,29 @@ const Sidebar: React.FC<SidebarProps> = ({
                 </Link>
               )}
 
+              {/* Submenu with modern pill indicators */}
               {!isCollapsed && item.subItems && isExpanded && (
-                <div className="bg-transparent p-[4px_0] ml-3 mr-3 mt-1 mb-2 relative overflow-hidden animate-fadeIn">
-                  {/* Vertical line - dynamically calculated */}
-                  <div
-                    className="absolute left-[26px] w-[3px] bg-[#94a3b8] rounded-t-[1.5px]"
-                    style={{
-                      top: "13px",
-                      height: calculateLineHeight(item.subItems.length),
-                    }}
-                  />
+                <div className="bg-gradient-to-br from-slate-50/50 to-blue-50/50 backdrop-blur-sm rounded-xl p-2 ml-2 mr-2 mt-2 mb-2 border border-slate-200/50 shadow-sm overflow-hidden animate-fadeIn">
                   {item.subItems.map((subItem, index) => (
                     <Link
                       key={index}
                       to={subItem.path}
                       onClick={handleLinkClick}
-                      className={`flex items-center p-[10px_16px] pl-12 text-sm font-medium transition-all duration-200 rounded-md my-[3px] relative whitespace-nowrap overflow-hidden text-ellipsis before:content-[''] before:absolute before:left-[26px] before:top-1/2 before:-translate-y-1/2 before:w-[14px] before:h-[3px] before:rounded-[1.5px] after:content-[''] after:absolute after:left-[25px] after:top-1/2 after:-translate-y-1/2 after:w-0 after:h-0 after:bg-transparent after:rounded-full after:transition-all after:duration-200 ${
+                      className={`flex items-center gap-3 p-2.5 pl-4 text-[13px] font-semibold transition-all duration-200 rounded-lg my-1 relative whitespace-nowrap overflow-hidden text-ellipsis group ${
                         location.pathname === subItem.path
-                          ? "text-[#64748b] before:bg-[#2563eb] before:h-[3px] before:w-[14px] after:w-0 after:h-0 after:bg-[#2563eb] after:left-[25px]"
-                          : "text-[#64748b] before:bg-[#94a3b8] hover:text-[#1e40af] hover:pl-[53px] hover:before:bg-[#1e40af]"
+                          ? "text-white font-bold bg-gradient-to-r from-[#0EA5E9] to-[#1E88E5] shadow-md"
+                          : "text-slate-600 hover:text-[#0EA5E9] hover:bg-white hover:shadow-sm"
                       }`}
                     >
-                      {subItem.label}
+                      {/* Modern pill indicator */}
+                      <span
+                        className={`w-1.5 h-1.5 rounded-full transition-all duration-200 flex-shrink-0 ${
+                          location.pathname === subItem.path
+                            ? "bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)]"
+                            : "bg-slate-300 group-hover:bg-[#0EA5E9] group-hover:shadow-[0_0_8px_rgba(14,165,233,0.6)]"
+                        }`}
+                      />
+                      <span className="flex-1">{subItem.label}</span>
                     </Link>
                   ))}
                 </div>
@@ -313,15 +307,29 @@ const Sidebar: React.FC<SidebarProps> = ({
         })}
       </nav>
 
-      {/* Collapse Button */}
+      {/* Collapse Button with brand styling */}
       <button
-        className={`hidden lg:flex items-center gap-2 p-[14px_16px] bg-none border-none border-t border-t-[#e5e7eb] cursor-pointer text-[#64748b] text-[13px] transition-all duration-200 w-full ${
+        className={`hidden lg:flex items-center gap-2.5 p-4 bg-gradient-to-br from-white to-slate-50 border-none border-t-2 border-t-slate-100 cursor-pointer text-slate-600 text-sm font-bold transition-all duration-200 w-full ${
           isCollapsed ? "justify-center" : "justify-start"
-        } flex-shrink-0 hover:bg-[#f1f5f9] hover:text-[#1e40af]`}
+        } flex-shrink-0 hover:bg-gradient-to-r hover:from-sky-50 hover:to-blue-50 hover:text-[#0EA5E9] group`}
         onClick={toggleSidebar}
       >
-        {isCollapsed ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
-        {!isCollapsed && <span>Collapse</span>}
+        {isCollapsed ? (
+          <ChevronRight
+            size={20}
+            strokeWidth={2.5}
+            className="text-[#0EA5E9] group-hover:text-[#1E88E5] transition-all duration-200 group-hover:scale-110"
+          />
+        ) : (
+          <>
+            <ChevronLeft
+              size={20}
+              strokeWidth={2.5}
+              className="text-[#0EA5E9] group-hover:text-[#1E88E5] transition-all duration-200 group-hover:scale-110"
+            />
+            <span>Collapse</span>
+          </>
+        )}
       </button>
     </div>
   );

@@ -1,4 +1,4 @@
-// DefaultLayout.tsx - Updated with manufacturing ERP mock data
+// DefaultLayout.tsx - Saptaloka Digital Brand Theme
 import React, { useState } from "react";
 import Sidebar from "../components/Sidebar/Sidebar";
 import RightSidebar from "../components/Sidebar/RightSidebar";
@@ -31,21 +31,23 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
       {/* Mobile Menu Button */}
       <button
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        className={`lg:hidden fixed top-4 left-4 z-[150] bg-white p-2.5 rounded-lg shadow-lg hover:bg-gray-50 transition-all duration-300 ${
-          isMobileMenuOpen ? "rotate-90" : "rotate-0"
+        className={`lg:hidden fixed top-4 left-4 z-[150] bg-white p-2.5 rounded-xl shadow-lg hover:shadow-xl hover:bg-gradient-to-br hover:from-[#0EA5E9] hover:to-[#1E88E5] hover:text-white transition-all duration-300 border border-slate-200 ${
+          isMobileMenuOpen
+            ? "rotate-90 bg-gradient-to-br from-[#0EA5E9] to-[#1E88E5] text-white"
+            : "rotate-0 text-slate-700"
         }`}
       >
         {isMobileMenuOpen ? (
-          <X size={24} className="text-gray-700" />
+          <X size={24} className="transition-transform duration-300" />
         ) : (
-          <Menu size={24} className="text-gray-700" />
+          <Menu size={24} className="transition-transform duration-300" />
         )}
       </button>
 
       {/* Mobile Blur Overlay */}
       {isMobileMenuOpen && (
         <div
-          className="lg:hidden fixed inset-0 bg-black/20 backdrop-blur-sm z-[99] transition-all duration-300 animate-fadeIn"
+          className="lg:hidden fixed inset-0 bg-slate-900/30 backdrop-blur-md z-[99] transition-all duration-300 animate-fadeIn"
           onClick={() => setIsMobileMenuOpen(false)}
         />
       )}
@@ -57,13 +59,13 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
         onCollapsedChange={setIsSidebarCollapsed}
       />
 
-      {/* Main Content - Dynamic margin based on sidebar state */}
+      {/* Main Content - Dynamic margin with primary brand gradient background */}
       <main
         className={`flex-1 ml-0 ${
           isSidebarCollapsed ? "lg:ml-[70px]" : "lg:ml-[280px]"
-        } p-4 sm:p-6 bg-gradient-to-br from-[#2563eb] via-[#337DBE] to-[#1e40af] min-h-screen transition-all duration-300`}
+        } p-4 sm:p-6 bg-gradient-to-br from-[#0EA5E9] via-[#1E88E5] to-[#0284c7] min-h-screen transition-all duration-300`}
       >
-        {children}
+        <div className="max-w-[1600px] mx-auto">{children}</div>
       </main>
 
       {/* Right Sidebar with Manufacturing ERP Mock Data */}
