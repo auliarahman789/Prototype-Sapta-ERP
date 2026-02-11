@@ -24,7 +24,6 @@ import {
 import DefaultLayout from "../../../layout/DefaultLayout";
 
 const MaintenanceRequestPage: React.FC = () => {
-  const [showNewRequestModal, setShowNewRequestModal] = useState(false);
   const [filterStatus, setFilterStatus] = useState("all");
   const [filterPriority, setFilterPriority] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
@@ -222,10 +221,7 @@ const MaintenanceRequestPage: React.FC = () => {
               </p>
             </div>
             <div className="flex items-center gap-2 md:gap-3">
-              <button
-                onClick={() => setShowNewRequestModal(true)}
-                className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-4 md:px-6 py-2 md:py-2.5 rounded-lg font-medium transition-all flex items-center gap-2 shadow-lg hover:shadow-xl text-sm md:text-base"
-              >
+              <button className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-4 md:px-6 py-2 md:py-2.5 rounded-lg font-medium transition-all flex items-center gap-2 shadow-lg hover:shadow-xl text-sm md:text-base">
                 <Plus size={16} className="md:w-[18px] md:h-[18px]" />
                 New Request
               </button>
